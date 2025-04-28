@@ -1,0 +1,112 @@
+;mode800
+*define
+
+caption "相思相愛ロリータ for ONScripter"
+
+rmenu "Ｓａｖｅ",save,"Ｌｏａｄ",load,"Ｓｋｉｐ",skip,"title",reset
+savename "セーブ","ロード","データ"
+savenumber 60
+transmode alpha
+globalon
+rubyon
+nsa
+humanz 10
+windowback
+
+
+
+effect 7,10,1200
+effect 8,10,400
+effect 9,10,500
+effect 10,10,1000
+
+
+
+defsub textclear_d
+defsub tati
+defsub ab
+
+
+
+game
+*start
+
+delay 200
+bg "data\\image\\logo.bmp",7
+delay 1600
+bg white,8
+
+
+; title.ks
+
+bgm "data\\bgm\\w_nitijou.mp3"
+bg "data\\image\\title.bmp",7
+
+*title
+; select  "前編",*part1,
+;         "後編",*part2,
+;         "つづきから",*load,
+;         "アルバム",*album,
+;         "回想モード",*temp,
+;         "設定",*settings,
+;         "おわり",*exit
+
+lsp 200, ":s/32,32,0;#000000#C0E0FF"+"　　　前編",620,50
+lsp 201, ":s/32,32,0;#000000#C0E0FF"+"　　　後編",620,100
+
+lsp 202, ":s/32,32,0;#000000#C0E0FF"+"つづきから",620,200
+lsp 203, ":s/32,32,0;#000000#C0E0FF"+"　アルバム",620,250
+lsp 204, ":s/32,32,0;#000000#C0E0FF"+"回想モード",620,300
+lsp 205, ":s/32,32,0;#000000#C0E0FF"+"　　　設定",620,350
+lsp 206, ":s/32,32,0;#000000#C0E0FF"+"　　おわり",620,400
+
+print 1
+
+*title_loop
+        bclear
+        bsp 200
+        bsp 201
+        bsp 202
+        bsp 203
+        bsp 204
+        bsp 205
+        bsp 206
+
+        bexec $11
+
+        if $11 == "S200" goto *part1
+        if $11 == "S201" goto *part2
+        if $11 == "S202" goto *load
+        if $11 == "S203" goto *album
+        if $11 == "S204" goto *temp
+        if $11 == "S205" goto *settings
+        if $11 == "S206" goto *exit
+goto *dummy
+
+*part1
+goto *dummy
+
+*part2
+goto *dummy
+
+*load
+goto *dummy
+
+*album
+goto *dummy
+
+*temp
+goto *dummy
+
+*settings
+goto *dummy
+
+
+*exit
+yesnobox %0,"終了しますか？","確認"
+if %0 == 1 end
+goto *title_loop
+
+
+*dummy
+goto *title_loop
