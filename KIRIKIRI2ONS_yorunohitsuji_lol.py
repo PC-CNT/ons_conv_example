@@ -36,6 +36,32 @@ def default_txt():
 
 # メイン関数
 def main(values: dict = {}, values_ex: dict = {}, pre_converted_dir: Path = Path.cwd()):
+
+    _txt = default_txt()
+    
+    ks_list = [
+        "A000.ks",
+        "A001.ks",
+        "A002.ks",
+        "B000.ks",
+        "B001.ks",
+        "B002.ks",
+        "B003.ks",
+        "C000.ks",
+        "ending.ks"
+    ]
+    
+    _raw = ""
+    
+    for ks in ks_list:
+        with open(pre_converted_dir / "data" / "scenario" / ks, encoding="cp932", errors="ignore") as f:
+            _raw += f.read()
+    
+    _txt += _raw
+    
+    with open(pre_converted_dir / "0.txt", "x", encoding="cp932") as f:
+        f.write(_txt)
+    
     return
 
 
